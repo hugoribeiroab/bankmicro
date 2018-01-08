@@ -2,9 +2,13 @@
 	include("db.php");
 
 	if (isset($_POST['entrar'])) {
-		$agencia = $_POST['agencia'];
-		$conta = $_POST['conta'];
-		$password = $_POST['password'];
+		$agencia_unsafe = $_POST['agencia'];
+		$agencia = mysqli_real_escape_string($connect, $agencia_unsafe);
+		$conta_unsafe = $_POST['conta'];
+		$conta = mysqli_real_escape_string($connect, $conta_unsafe);
+		$password_unsafe = $_POST['password'];
+		$password = mysqli_real_escape_string($connect, $password_unsafe);
+		
 		$verifica = mysqli_query($connect,"SELECT * FROM contas WHERE ag = '$agencia' AND conta='$conta' AND senha='$password'");
 		if (mysqli_num_rows($verifica)<=0) {
 			echo "<h3>Dados inseridos incorretamente!</h3>";
