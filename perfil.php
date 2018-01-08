@@ -3,11 +3,12 @@
 
 	if (isset($_POST['autenticar'])){
 		header("Location: autenticar.php");
-	}
-
-	if (isset($_POST['transacao'])){
+    }elseif(isset($_POST['transacao'])){
 		header("Location: ./");
-	}
+	}else{
+        // do nothing
+    }
+
 ?>
 <html>
 <header>
